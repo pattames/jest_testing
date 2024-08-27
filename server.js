@@ -15,14 +15,10 @@ app.use(cors());
 //form submission
 app.use(express.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 8080;
-
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
 app.use("/api/students", student);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`.rainbow);
-});
+module.exports = app;
