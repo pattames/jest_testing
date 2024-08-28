@@ -7,7 +7,7 @@ const getAllStudent = async (req, res) => {
     if (!students.length) {
       res.status(200).json({ msg: "No students in the DB" });
     } else {
-      res.status(200).json({ students });
+      res.status(200).json({ data: students });
     }
   } catch (error) {
     res.status(500).json(error);
@@ -21,7 +21,7 @@ const getOneStudent = async (req, res) => {
     const student = await Student.findById(id);
 
     if (student) {
-      return res.status(200).json(student);
+      return res.status(200).json({ data: student });
     }
     res.status(404).json({ msg: "I did not find this student :(" });
   } catch (error) {
@@ -35,7 +35,10 @@ const createStudent = async (req, res) => {
     // We grab exactly the keys that we have in the blueprint (Schema)
     const { first_name, last_name, email } = req.body;
     const student = await Student.create({ first_name, last_name, email });
-    res.status(201).json(student);
+    res.status(201).json({
+      message: "Student created successfully!",
+      data: student,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

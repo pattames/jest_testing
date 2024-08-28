@@ -19,6 +19,6 @@ app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-app.use("/api/students", student);
+app.use("/students", student);
 
 module.exports = app;
